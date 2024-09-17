@@ -133,4 +133,38 @@ myDatabase> db.myCollection.find().pretty()
 ]
 ```
 
+### How to update documents in MongoDb?
+The MongoDB update() method is a method that is used to update a single document or multiple documents in the collection. When the document is updated the _id field remains unchanged. The db.collection.update() method updates a single document by default.
+> Note: In MongoDB, the update() method has been deprecated in favor of using updateOne() or updateMany() depending on your specific use case.
 
+**Example 1: Update a Single Document:**
+Write a query to update the marks of a student where rollno 1 in the “myCollection” collection.
+```JavaScript
+    myDatabase> db.myCollection.updateOne({Name:"Suraj"},{$set:{marks:99}})
+    {
+       acknowledged: true,
+       insertedId: null,
+       matchedCount: 1,
+       modifiedCount: 1,
+       upsertedCount: 0
+    }
+-------------------------------------------------------------------
+    myDatabase> db.myCollection.find().pretty()
+         [
+           {
+             _id: ObjectId('66e96b84e2f06bee81c73bf8'),
+             roll: 1,
+             Name: 'Suraj',
+             marks: 99
+           },
+           {
+             _id: ObjectId('66e96d0ce2f06bee81c73bf9'),
+             Name: 'Suraj',
+             marks: 95
+           },
+           { _id: ObjectId('66e96dc4e2f06bee81c73bfa'), Name: 'Krishna' },
+           { _id: ObjectId('66e96dc4e2f06bee81c73bfb'), Name: 'Niraj' },
+           { _id: ObjectId('66e96dc4e2f06bee81c73bfc'), Name: 'Sohan' },
+           { _id: 100, Name: 'KPBHAI', marks: 98 }
+        ]
+```
